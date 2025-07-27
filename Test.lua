@@ -1,4 +1,6 @@
 row_list = {}
+row_id = 4585
+print("v1")
 function getRow(world)
     if getBot():isInWorld(world) then 
         row_list[world] = row_list[world] or {coords = {}}
