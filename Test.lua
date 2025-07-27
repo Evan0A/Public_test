@@ -1,9 +1,9 @@
 row_list = {}
 row_id = 4584
-print("v5")
+print("v6")
 function getRow(world)
     if getBot():isInWorld(world) then 
-        row_list[world].coords = {}
+        row_list[world] = row_list[world] or {coords ={}}
         local used_y = {}
 
         for _, tiles in pairs(getBot():getWorld():getTiles()) do 
@@ -17,28 +17,7 @@ function getRow(world)
 end
 
 
-function calculateRow(world)
-    local rownum = {}
-    local y_set = {}
 
-    for _, coord in pairs(row_list[world].coords) do
-        if coord.y ~= nil and not y_set[coord.y] then
-            table.insert(rownum, coord.y)
-            y_set[coord.y] = true
-        end
-    end
-    
-    table.sort(rownum)
-
-    local y_to_row = {}
-    for i, y in ipairs(rownum) do
-        y_to_row[y] = i
-    end
-
-    for _, coord in pairs(row_list[world].coords) do
-        coord.row = y_to_row[coord.y]
-    end
-end
 
 function dump(tbl, indent)
     indent = indent or 0
@@ -56,5 +35,3 @@ end
 
 print(getRow(getBot():getWorld().name))
 dump(row_list)
-calculateRow(getBot():getWorld().name)
-dump(row_list, 1)
