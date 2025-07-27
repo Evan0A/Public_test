@@ -1,6 +1,6 @@
 row_list = {}
-row_id = 4585
-print("v1")
+row_id = 4584
+print("v2")
 function getRow(world)
     if getBot():isInWorld(world) then 
         row_list[world] = row_list[world] or {coords = {}}
