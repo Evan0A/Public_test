@@ -1,6 +1,6 @@
 row_list = {}
 row_id = 4584
-print("v2")
+print("v3")
 function getRow(world)
     if getBot():isInWorld(world) then 
         row_list[world] = row_list[world] or {coords = {}}
@@ -55,5 +55,6 @@ function dump(tbl, indent)
 end
 
 getRow(getBot():getWorld().name)
+dump(row_list)
 calculateRow(getBot():getWorld().name)
 dump(row_list, 1)
