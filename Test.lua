@@ -3,7 +3,7 @@ row_id = 4584
 print("v4")
 function getRow(world)
     if getBot():isInWorld(world) then 
-        row_list[world] = row_list[world] or {coords = {}}
+        row_list[world].coords = {}
         local used_y = {}
 
         for _, tiles in pairs(getBot():getWorld():getTiles()) do 
