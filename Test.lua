@@ -1,6 +1,6 @@
 row_list = {}
 row_id = 4584
-print("v3")
+print("v4")
 function getRow(world)
     if getBot():isInWorld(world) then 
         row_list[world] = row_list[world] or {coords = {}}
@@ -21,10 +21,10 @@ function calculateRow(world)
     local rownum = {}
     local y_set = {}
 
-    for _, coord in pairs(row_list[world].coords) do
-        if coord.y ~= nil and not y_set[coord.y] then
-            table.insert(rownum, coord.y)
-            y_set[coord.y] = true
+    for _, world in pairs(row_list[world]) do
+        if world.coords.y ~= nil and not y_set[world.coords.y] then
+            table.insert(rownum, world.coords.y)
+            y_set[world.coords.y] = true
         end
     end
     
@@ -54,7 +54,7 @@ function dump(tbl, indent)
     end
 end
 
-getRow(getBot():getWorld().name)
+print(getRow(getBot():getWorld().name))
 dump(row_list)
 calculateRow(getBot():getWorld().name)
 dump(row_list, 1)
