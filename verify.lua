@@ -356,7 +356,7 @@ function getModuleJson()
     end
     return json
 end
-json = getModuleJSON()
+json = getModuleJson()
 function getHttp(url)
     local client = HttpClient.new()
     client.url = url
