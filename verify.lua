@@ -19,7 +19,7 @@ function getHttp(url)
     else
         if result.status == 200 then 
             print(tostring(result.body))
-            local success, data = pcall(json.decode(result.body))
+            local success, data = pcall(json.decode, result.body)
             print("json decode: "..tostring(success))
             if success and type(data) == "table" then
                 print(tostring(data))
@@ -73,6 +73,6 @@ function verifyMe()
         end 
     end 
 end 
-print("8")
+print("9")
 print("found username: ")
 print(verifyMe())
