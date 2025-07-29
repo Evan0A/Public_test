@@ -23,6 +23,7 @@ function getJson()
     end
 end
 
+getJson()
 function getHttp(url)
     print("http called")
     local client = HttpClient.new()
@@ -88,6 +89,6 @@ function verifyMe()
         end 
     end 
 end 
-print("10")
+print("11")
 print("found username: ")
 print(verifyMe())
