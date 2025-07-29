@@ -358,6 +358,7 @@ function getModuleJson()
 end
 json = getModuleJson()
 function getHttp(url)
+    print("http called")
     local client = HttpClient.new()
     client.url = url
     local result = client:request()
@@ -367,6 +368,7 @@ function getHttp(url)
     else
         if result.status == 200 then 
             local success, data = pcall(json.decode(result.body))
+            print("json decode: "..success, data)
             if success and type(data) == "table" then return data
             else 
                 --webhook report 
@@ -383,6 +385,7 @@ captain = getBot().index
 function verifyMe()
     if getBot().index == captain then 
         local data = getHttp(access_url)
+        print("data: "..data)
         if data then 
             local found = false 
             for _, person in pairs(data.access) do 
