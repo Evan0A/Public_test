@@ -370,7 +370,7 @@ function getHttp(url)
             local success, data = pcall(json.decode(result.body))
             print("json decode: "..tostring(success))
             if success and type(data) == "table" then
-                print(data)
+                print(tostring(data))
                 return data
             else 
                 --webhook report 
@@ -421,6 +421,6 @@ function verifyMe()
         end 
     end 
 end 
-print("2")
+print("3")
 print("found username: ")
 print(verifyMe())
