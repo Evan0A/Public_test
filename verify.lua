@@ -4,8 +4,8 @@ json = nil
 function getJson()
     client = HttpClient.new()
     client.url = "https://raw.githubusercontent.com/Evan0A/Module/refs/heads/main/dkjson.lua"
-    local result = tostring(client:request())
-    json = getBot():runScript(result)
+    local result = load(tostring(client:request()))
+    json = result()
 end
 
 function getHttp(url)
@@ -73,6 +73,6 @@ function verifyMe()
         end 
     end 
 end 
-print("7")
+print("8")
 print("found username: ")
 print(verifyMe())
