@@ -33,12 +33,9 @@ function getHttp(url)
         --webhook report error
         return false 
     else
-        if result.status == 200 then 
-            print(tostring(result.body))
+        if result.status == 200 then
             local success, data = pcall(json.decode, result.body)
-            print("json decode: "..tostring(success))
             if success and type(data) == "table" then
-                print(tostring(data))
                 return data
             else 
                 --webhook report 
@@ -55,7 +52,6 @@ captain = getBot().index
 function verifyMe()
     if getBot().index == captain then 
         local data = getHttp(access_url)
-        print("data: "..tostring(data))
         if data then 
             local found = false 
             for _, person in pairs(data.access) do 
@@ -89,6 +85,6 @@ function verifyMe()
         end 
     end 
 end 
-print("3")
+print("4")
 print("found username: ")
 print(verifyMe())
