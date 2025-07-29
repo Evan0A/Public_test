@@ -1,11 +1,26 @@
 
 access_url = "https://raw.githubusercontent.com/Evan0A/Nuron_access/refs/heads/main/Factory_script.json?t="..os.time()
+
 json = nil
+
 function getJson()
-    client = HttpClient.new()
+    local client = HttpClient.new()
     client.url = "https://raw.githubusercontent.com/Evan0A/Module/refs/heads/main/dkjson.lua"
-    local result = load(tostring(client:request()))
-    json = result()
+
+    local code = client:request()  -- Dapatkan isi file Lua sebagai string
+    local chunk, err = load(code)
+
+    if not chunk then
+        print("Gagal load kode:", err)
+        return
+    end
+
+    local success, result = pcall(chunk)  -- Jalankan chunk dengan aman
+    if success then
+        json = result
+    else
+        print("Gagal eksekusi kode:", result)
+    end
 end
 
 function getHttp(url)
@@ -73,6 +88,6 @@ function verifyMe()
         end 
     end 
 end 
-print("9")
+print("10")
 print("found username: ")
 print(verifyMe())
