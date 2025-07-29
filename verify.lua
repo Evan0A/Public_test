@@ -1,4 +1,4 @@
-
+myUsername = getUsername()
 access_url = "https://raw.githubusercontent.com/Evan0A/Nuron_access/refs/heads/main/Factory_script.json?t="..os.time()
 
 json = nil
