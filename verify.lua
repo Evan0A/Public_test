@@ -8,7 +8,7 @@ function getJson()
     client.url = "https://raw.githubusercontent.com/Evan0A/Module/refs/heads/main/dkjson.lua"
 
     local code = client:request()  -- Dapatkan isi file Lua sebagai string
-    local chunk, err = load(tostring(code))
+    local chunk, err = load(tostring(code.body))
 
     if not chunk then
         print("Gagal load kode:", err)
@@ -89,6 +89,6 @@ function verifyMe()
         end 
     end 
 end 
-print("1")
+print("2")
 print("found username: ")
 print(verifyMe())
