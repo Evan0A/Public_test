@@ -1,6 +1,6 @@
 myUsername = getUsername()
 access_url = "https://raw.githubusercontent.com/Evan0A/Nuron_access/refs/heads/main/Factory_script.json?t="..os.time()
-
+script_code = "normal"
 json = nil
 
 function getJson()
@@ -62,7 +62,7 @@ function verifyMe()
                 if person.username == myUsername then
                     local yesyes = false
                     for _, tipe in ipairs(person.type) do 
-                        if tipe == script_code then 
+                        if tipe:upper() == script_code:upper() then 
                             yesyes = true 
                             break
                         end 
@@ -89,6 +89,6 @@ function verifyMe()
         end 
     end 
 end 
-print("2")
+print("3")
 print("found username: ")
 print(verifyMe())
