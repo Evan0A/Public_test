@@ -365,7 +365,7 @@ function getHttp(url)
         return false 
     else
         if result.status == 200 then 
-            print(tostring(result.body)
+            print(tostring(result.body))
             local success, data = pcall(json.decode(result.body))
             print("json decode: "..tostring(success))
             if success and type(data) == "table" then
