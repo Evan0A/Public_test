@@ -1,5 +1,5 @@
 access_url = "https://raw.githubusercontent.com/Evan0A/Nuron_access/refs/heads/main/Factory_script.json?t="..os.time()
-
+function getJson()
     local json = { _version = "0.1.2" }
     local encode
     
@@ -352,6 +352,8 @@ access_url = "https://raw.githubusercontent.com/Evan0A/Nuron_access/refs/heads/m
       end
       return res
     end
+    return json 
+end
 
 function getHttp(url)
     print("http called")
@@ -378,7 +380,7 @@ function getHttp(url)
     --webhook report
     return false
 end
-
+local json = getJson()
 captain = getBot().index
 function verifyMe()
     if getBot().index == captain then 
@@ -417,6 +419,6 @@ function verifyMe()
         end 
     end 
 end 
-print("4")
+print("5")
 print("found username: ")
 print(verifyMe())
