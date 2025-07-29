@@ -1,7 +1,5 @@
 access_url = "https://raw.githubusercontent.com/Evan0A/Nuron_access/refs/heads/main/Factory_script.json?t="..os.time()
 
-
-function getModuleJson()
     local json = { _version = "0.1.2" }
     local encode
     
@@ -354,9 +352,7 @@ function getModuleJson()
       end
       return res
     end
-    return json
-end
-json = getModuleJson()
+
 function getHttp(url)
     print("http called")
     local client = HttpClient.new()
