@@ -1,3 +1,4 @@
+print("1")
 --[WORLD SETTINGS]--
 
 world_farming = {"vaiiiii1140"} 
@@ -86,7 +87,7 @@ access_url = ""
 bot_indexs = {}
 botCount = 0 
 captain = 0
-myFarm, myRow = getEvenSpreadWorldRow()
+myFarm, myRow = nil
 myUsername = getUsername()
 row_list = {}
 seed_list = {}
@@ -260,6 +261,8 @@ function getEvenSpreadWorldRow()
         local row = math.floor((bot_index - 1) / world_count) + 1
         local world_index = ((bot_index - 1) % world_count) + 1
     end
+    myFarm = world_farming[world_index]:upper()
+    myRow = row
     return (world_farming[world_index]):upper(), row
 end
 
