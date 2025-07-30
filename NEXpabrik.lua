@@ -1,4 +1,4 @@
-print("1")
+print("2")
 --[WORLD SETTINGS]--
 
 world_farming = {"vaiiiii1140"} 
@@ -216,22 +216,9 @@ function getCaptain(bool)
     botCount = #getBots()
     getBot().custom_status = ""
     sleep(1000)
-    local function cekRunning()
-        for i = 1, botCount do
-            local Cstatus = tostring(getBot(i).custom_status)
-            if tableIsIn(captainStatus, Cstatus) and getBot(i):isRunningScript() and getBot(i).name ~= getBot().name then 
-                getBot().custom_status = string.format("Following captain(%s)", getBot(i).name)
-                return true, i
-            end
-        end 
-        return false, 0
+    if #getBots() == 0 then 
+        captain = getBot().index
     end
-    local status, num = cekRunning()
-    if status then 
-        captain = num
-        return true
-    end
-    sleep(2000)
     getBot().custom_status = "REST VERIFICATION 1"
     sleep(10000)
     for i = 1, botCount do 
@@ -243,9 +230,6 @@ function getCaptain(bool)
     captain = bot_indexs[math.ceil(#bot_indexs / 2)]
     if getBot().index == captain then 
         print("changed captain rest: "..getBot(captain).name)
-        if bool then
-            --
-        end
     else 
         getBot().custom_status = string.format("Following captain(%s)", getBot(captain).name)
     end
