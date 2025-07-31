@@ -1,4 +1,4 @@
-print("3")
+print("V5")
 --[WORLD SETTINGS]--
 
 world_farming = {"vaiiiii1140"} 
@@ -135,6 +135,7 @@ function warp(world, id)
 end
 
 function getJson()
+    print("entering getJson")
     local client = HttpClient.new()
     client.url = "https://raw.githubusercontent.com/Evan0A/Module/refs/heads/main/dkjson.lua"
 
@@ -148,6 +149,7 @@ function getJson()
 
     local success, result = pcall(chunk)  -- Jalankan chunk dengan aman
     if success then
+        print("success getting json")
         json = result
     else
         print("Gagal eksekusi kode:", result)
@@ -155,6 +157,7 @@ function getJson()
 end
 
 function getHttp(url)
+    print("getHttp")
     local client = HttpClient.new()
     client.url = url
     local result = client:request()
@@ -165,11 +168,14 @@ function getHttp(url)
         if result.status == 200 then
             local success, data = pcall(json.decode, result.body)
             if success and type(data) == "table" then
+                print("success decode result")
                 return data
             else 
+                print("failed decode data")
                 --webhook report 
             end 
         else 
+            print("web error") 
             --webhook report 
         end 
     end 
@@ -180,9 +186,11 @@ end
 
 
 function verifyMe()
+    print("entering verify")
     if getBot().index == captain then 
         local data = getHttp(access_url)
-        if data then 
+        if data then
+            print("verify data true")
             local found = false 
             for _, person in pairs(data.access) do 
                 if person.username == myUsername then
