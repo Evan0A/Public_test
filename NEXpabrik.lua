@@ -1,4 +1,4 @@
-print("V10")
+print("V11")
 --[WORLD SETTINGS]--
 
 world_farming = {"vaiiiii1140"} 
@@ -286,14 +286,16 @@ end
 
 function getEvenSpreadWorldRow()
     print("entering getEvenSpreadWorld()")
+    local row 
+    local world_index
     for _, bot_index in ipairs(bot_indexs) do 
         local world_count = #world_farming
         local total_capacity = world_count * max_bot_perWorld
         if bot_index > total_capacity then
             --invalid count of row 
         end
-        local row = math.floor((bot_index - 1) / world_count) + 1
-        local world_index = ((bot_index - 1) % world_count) + 1
+        row = math.floor((bot_index - 1) / world_count) + 1
+        world_index = ((bot_index - 1) % world_count) + 1
     end
     myFarm = world_farming[world_index]:upper()
     myRow = row
