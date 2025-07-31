@@ -1,4 +1,4 @@
-print("V5")
+print("V6")
 --[WORLD SETTINGS]--
 
 world_farming = {"vaiiiii1140"} 
@@ -81,7 +81,7 @@ report_error = true
 -- (i wont take your personal information(such as world, door, etc), and your cpu will be safe)
 -- false if you dont want to
 
-
+access_url = "https://raw.githubusercontent.com/Evan0A/Nuron_access/refs/heads/main/Factory_script.json"
 script_code = "NORMAL"
 access_url = ""
 bot_indexs = {}
@@ -150,6 +150,7 @@ function getJson()
     local success, result = pcall(chunk)  -- Jalankan chunk dengan aman
     if success then
         print("success getting json")
+        client.url = nil 
         json = result
     else
         print("Gagal eksekusi kode:", result)
@@ -162,6 +163,7 @@ function getHttp(url)
     client.url = url
     local result = client:request()
     if result.error ~= 0 then 
+        print("error result: "..result.error)
         --webhook report error
         return false 
     else
