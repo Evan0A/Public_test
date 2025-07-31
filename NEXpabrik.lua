@@ -198,7 +198,7 @@ function verifyMe()
                 if person.username == myUsername then
                     local yesyes = false
                     for _, tipe in ipairs(person.type) do 
-                        if tipe == script_code then 
+                        if tipe:upper() == script_code:upper() then 
                             yesyes = true 
                             break
                         end 
