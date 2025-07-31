@@ -1,4 +1,4 @@
-print("V6")
+print("V8")
 --[WORLD SETTINGS]--
 
 world_farming = {"vaiiiii1140"} 
@@ -81,7 +81,7 @@ report_error = true
 -- (i wont take your personal information(such as world, door, etc), and your cpu will be safe)
 -- false if you dont want to
 
-access_url = "https://raw.githubusercontent.com/Evan0A/Nuron_access/refs/heads/main/Factory_script.json"
+accessUrl = "https://raw.githubusercontent.com/Evan0A/Nuron_access/refs/heads/main/Factory_script.json"
 script_code = "NORMAL"
 access_url = ""
 bot_indexs = {}
@@ -163,7 +163,7 @@ function getHttp(url)
     client.url = url
     local result = client:request()
     if result.error ~= 0 then 
-        print("error result: "..result.error)
+        print("error result: "..result.error.." | url: "..url)
         --webhook report error
         return false 
     else
@@ -190,7 +190,7 @@ end
 function verifyMe()
     print("entering verify")
     if getBot().index == captain then 
-        local data = getHttp(access_url)
+        local data = getHttp(accessUrl)
         if data then
             print("verify data true")
             local found = false 
