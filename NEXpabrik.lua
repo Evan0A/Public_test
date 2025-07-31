@@ -1,4 +1,4 @@
-print("2")
+print("3")
 --[WORLD SETTINGS]--
 
 world_farming = {"vaiiiii1140"} 
@@ -95,6 +95,44 @@ seed_index = 1
 malady_safe = {3,4}
 valid = false
 json = nil
+
+function isInDoor()
+    if getBot():getWorld():getTile(getBot().x, getBot().y).fg == 6 then 
+        return true 
+    end 
+    return false 
+end
+
+function warp(world, id)
+    world = world:upper()
+    local id = id or ''
+    local nuked = 0
+    local stuck = false
+    if not getBot():isInWorld(world) then
+        getBot():leaveWorld()
+        sleep(2000)
+        while not getBot():isInWorld(world) and nuked < 5 do
+            while getBot().status ~= BotStatus.online do
+                getBot().auto_reconnect = true
+                sleep(5000)
+            end
+            getBot():warp(world, id)
+            sleep(delay.warp)
+            nuked = nuked + 1
+            if nuked >= 5 then 
+                return false
+            end
+        end
+    else 
+        while getBot():isInWorld(world) and getBot():getWorld():getTile(getBot().x, getBot().y).fg == 6 and id ~= '' do 
+            getBot():warp(world, id)
+            sleep(delay.warp)
+            stuck = stuck + 1 
+            if stuck >= 5 then return false end 
+        end 
+    end
+    return true
+end
 
 function getJson()
     local client = HttpClient.new()
@@ -216,8 +254,9 @@ function getCaptain(bool)
     botCount = #getBots()
     getBot().custom_status = ""
     sleep(1000)
-    if #getBots() == 0 then 
+    if #getBots() == 1 then 
         captain = getBot().index
+        return true
     end
     getBot().custom_status = "REST VERIFICATION 1"
     sleep(10000)
@@ -236,6 +275,7 @@ function getCaptain(bool)
 end
 
 function getEvenSpreadWorldRow()
+    print("entering getEvenSpreadWorld()")
     for _, bot_index in ipairs(bot_indexs) do 
         local world_count = #world_farming
         local total_capacity = world_count * max_bot_perWorld
@@ -247,10 +287,12 @@ function getEvenSpreadWorldRow()
     end
     myFarm = world_farming[world_index]:upper()
     myRow = row
+    print("world: "..myFarm.."|row: "..myRow)
     return (world_farming[world_index]):upper(), row
 end
 
 function getRow()
+    print("entering getRow()")
     warp(myFarm, door_farming)
     if getBot():isInWorld(myFarm) then 
         row_list[world] = row_list[world] or {coords = {}}
@@ -267,6 +309,7 @@ function getRow()
 end
 
 function searchRow(row)
+    print("entering SearchRow()")
     if not getBot():isInWorld(myFarm) then
         warp(myFarm, door_farming)
     end 
@@ -283,6 +326,7 @@ function searchRow(row)
 end 
 
 function isInRow()
+    print("entering isInrow()")
     if getBot():isInWorld(myFarm) and not isInDoor() then
         getBot():findPath(row_list[myFarm].coords[myRow].x, row_list[myFarm].coords[myRow].y)
         sleep(100)
@@ -483,48 +527,10 @@ function checkConfig()
     end 
 end
 
-function isInDoor()
-    if getBot():getWorld():getTile(getBot().x, getBot().y).fg == 6 then 
-        return true 
-    end 
-    return false 
-end
-
-function warp(world, id)
-    world = world:upper()
-    local id = id or ''
-    local nuked = 0
-    local stuck = false
-    if not getBot():isInWorld(world) then
-        getBot():leaveWorld()
-        sleep(2000)
-        while not getBot():isInWorld(world) and nuked < 5 do
-            while getBot().status ~= BotStatus.online do
-                getBot().auto_reconnect = true
-                sleep(5000)
-            end
-            getBot():warp(world, id)
-            sleep(delay.warp)
-            nuked = nuked + 1
-            if nuked >= 5 then 
-                return false
-            end
-        end
-    else 
-        while getBot():isInWorld(world) and getBot():getWorld():getTile(getBot().x, getBot().y).fg == 6 and id ~= '' do 
-            getBot():warp(world, id)
-            sleep(delay.warp)
-            stuck = stuck + 1 
-            if stuck >= 5 then return false end 
-        end 
-    end
-    return true
-end
-
-
 function startThisSoGoodScriptAnjay()
     getCaptain()
     if getBot().index == captain then 
+        getJson()
         verifyMe()
     end 
     if valid then 
