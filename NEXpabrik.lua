@@ -1,4 +1,4 @@
-print("V13")
+print("V15")
 --[WORLD SETTINGS]--
 
 world_farming = {"vaiiiii1140"} 
@@ -266,6 +266,7 @@ function getCaptain(bool)
     sleep(1000)
     if #getBots() == 1 then 
         captain = getBot().index
+        table.insert(bot_indexes, tonumber(getBot().index))
         return true
     end
     getBot().custom_status = "REST VERIFICATION 1"
@@ -285,19 +286,53 @@ function getCaptain(bool)
 end
 
 function getEvenSpreadWorldRow()
-    print("entering getEvenSpreadWorld()")
-    for _, bot_index in ipairs(bot_indexs) do 
-        local world_count = #world_farming
-        local total_capacity = world_count * max_bot_perWorld
+    print("entering getEvenSpreadWorldRow()")
+
+    if not bot_indexs then
+        print("❌ bot_indexs is nil")
+        return false, false
+    end
+
+    if not world_farming then
+        print("❌ world_farming is nil")
+        return false, false
+    end
+
+    local world_count = #world_farming
+    print("✅ world_count: " .. world_count)
+
+    local total_capacity = world_count * max_bot_perWorld
+    print("✅ total_capacity: " .. total_capacity)
+
+    for i, bot_index in ipairs(bot_indexs) do
+        print("🔁 Checking bot_indexs[" .. i .. "] = " .. tostring(bot_index))
+
         if bot_index > total_capacity then
-            --invalid count of row 
+            print("❌ Invalid bot_index: " .. bot_index .. " (melebihi kapasitas)")
+            return false, false
         end
+
         local row = math.floor((bot_index - 1) / world_count) + 1
         local world_index = ((bot_index - 1) % world_count) + 1
-        myFarm, myRow = world_farming[world_index], row
-        print("myFarm..: "..myfarm, myRow)
+
+        print("➡️ Calculated row = " .. row)
+        print("➡️ Calculated world_index = " .. world_index)
+
+        local farm = world_farming[world_index]
+        if not farm then
+            print("❌ world_farming[" .. world_index .. "] is nil!")
+            return false, false
+        end
+
+        local myFarm = farm:upper()
+        local myRow = row
+
+        print("✅ Assigned world: " .. myFarm .. " | row: " .. myRow)
+        return myFarm, myRow
     end
-    return false
+
+    print("❌ Tidak ada bot_index yang valid.")
+    return false, false
 end
 
 function getRow()
