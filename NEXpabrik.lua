@@ -1,4 +1,4 @@
-print("V15")
+print("V16")
 --[WORLD SETTINGS]--
 
 world_farming = {"vaiiiii1140"} 
@@ -84,7 +84,7 @@ report_error = true
 accessUrl = "https://raw.githubusercontent.com/Evan0A/Nuron_access/refs/heads/main/Factory_script.json"
 script_code = "NORMAL"
 access_url = ""
-bot_indexs = {}
+bot_indexes = {}
 botCount = 0 
 captain = 0
 myFarm, myRow = nil
@@ -273,11 +273,11 @@ function getCaptain(bool)
     sleep(10000)
     for i = 1, botCount do 
         if getBot(i).custom_status == "REST VERIFICATION 1" and getBot(i):isRunningScript() then 
-            tableCekDouble(bot_indexs, tonumber(getBot(i).index))
+            tableCekDouble(bot_indexes, tonumber(getBot(i).index))
         end 
     end
     sleep(5000)
-    captain = bot_indexs[math.ceil(#bot_indexs / 2)]
+    captain = bot_indexes[math.ceil(#bot_indexs / 2)]
     if getBot().index == captain then 
         print("changed captain rest: "..getBot(captain).name)
     else 
