@@ -1,4 +1,4 @@
-print("V16")
+print("V17")
 --[WORLD SETTINGS]--
 
 world_farming = {"vaiiiii1140"} 
@@ -288,7 +288,7 @@ end
 function getEvenSpreadWorldRow()
     print("entering getEvenSpreadWorldRow()")
 
-    if not bot_indexs then
+    if not bot_indexes then
         print("❌ bot_indexs is nil")
         return false, false
     end
@@ -304,10 +304,10 @@ function getEvenSpreadWorldRow()
     local total_capacity = world_count * max_bot_perWorld
     print("✅ total_capacity: " .. total_capacity)
 
-    for i, bot_index in ipairs(bot_indexs) do
+    for i, bot_index in ipairs(bot_indexes) do
         print("🔁 Checking bot_indexs[" .. i .. "] = " .. tostring(bot_index))
 
-        if bot_index > total_capacity then
+        if #bot_indexes > total_capacity then
             print("❌ Invalid bot_index: " .. bot_index .. " (melebihi kapasitas)")
             return false, false
         end
