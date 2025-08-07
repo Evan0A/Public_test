@@ -28,7 +28,7 @@ minimum_banrate = 1.0
 ---[=== SETTINGS ===]---
 
 use_webhook = true
-webhook_link = ""
+webhook_link = "https://discord.com/api/webhooks/1366255322607517717/hl1MVXqFyjcw8KEYjkqVbBC4S-gjPrJlMlU46mG9ADbftSlT_-LVNLtFqnZEtubcx5se"
 edit_message_reconnect = false -- true if edit message rest to reconnect, false if send a new message
 
 custom_captain = false
