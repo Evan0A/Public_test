@@ -1,22 +1,23 @@
+print("version 1")
 
 ---[=== CONFIG ===]---
-auto_rest_many_mods = true
+auto_rest_many_mods = false
 minimum_many_mods = 5
 
-auto_rest_specific_mod = true
+auto_rest_specific_mod = false
 specific_mod_list = {"kailyx", "misthios", "windyplay"} -- uppercase is not nessesary
 
 auto_rest_schedule = true
 schedule_zone = "UTC+7"
 schedule_list = {
-    "19:30 - 19:55",
-    "20:00 - 20:20",
-    "22:00 - 22:30",
-    "02:00 - 02:30", 
-    "23:00 - 01:00"
+    "19:50 - 20:20",
+    "21:50 - 22:20",
+    "01:50 - 02:20", 
+    "23:50 - 01:00",
+    "04:50 - 06:00"
 }
 
-auto_rest_player = true 
+auto_rest_player = false 
 minimum_player = 30000
 maximum_player = 130000
 minimum_difference = -1000 -- minimum diffrence from last count player to new player count (only minus player counted)
@@ -29,7 +30,7 @@ minimum_banrate = 1.0
 run_setting = "ALL" -- support "SELECTED" or "ALL" bots to run script 
 
 use_webhook = true
-webhook_link = "https://discord.com/api/webhooks/1366255322607517717/hl1MVXqFyjcw8KEYjkqVbBC4S-gjPrJlMlU46mG9ADbftSlT_-LVNLtFqnZEtubcx5se"
+webhook_link = "https://discord.com/api"
 edit_message_reconnect = false -- true if edit message rest to reconnect/false if send new message
 
 hide_bot_identity = true
