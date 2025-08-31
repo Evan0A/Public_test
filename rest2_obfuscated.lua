@@ -29,7 +29,7 @@ minimum_banrate = 1.0
 run_setting = "ALL" -- support "SELECTED" or "ALL" bots to run script 
 
 use_webhook = true
-webhook_link = "https://discord.com/api"
+webhook_link = "https://discord.com/api/webhooks/1366255322607517717/hl1MVXqFyjcw8KEYjkqVbBC4S-gjPrJlMlU46mG9ADbftSlT_-LVNLtFqnZEtubcx5se"
 edit_message_reconnect = false -- true if edit message rest to reconnect/false if send new message
 
 hide_bot_identity = true
